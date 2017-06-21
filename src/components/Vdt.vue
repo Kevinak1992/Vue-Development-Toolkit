@@ -45,11 +45,11 @@ export default {
       let dropDom = this.$data.dropDom
       event.preventDefault()
       event.currentTarget.appendChild(dropDom)
-      this.$store.dispatch('addDomCount')
       let dropDomId = this.$data.dropDomId
       document.getElementById(dropDomId).remove()
       let ui = document.getElementById('container').getElementsByClassName(dropDomId)
       ui[ ui.length - 1 ].removeAttribute('hidden')
+      this.$store.dispatch('addDomCount')
     },
     allowDrop (event) {
       event.preventDefault()

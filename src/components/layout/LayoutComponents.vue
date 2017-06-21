@@ -4,8 +4,8 @@
       布局
     </div>
     <ul>
-      <li draggable='true' @dragstart='drag($event)' class="layoutLi" id="single-column"  v-for="n in count">
-        <span class="layoutSpan">单列布局 {{ count - 1 }}</span>
+      <li draggable='true' @dragstart='drag($event)' class="layoutLi" id="single-column"  v-for="n in singleColumnCount">
+        <span class="layoutSpan">单列布局 {{ singleColumnCount - 1 }}</span>
         <single-column></single-column>
       </li>
       <li draggable='true' @dragstart='drag($event)' class="layoutLi" id="double-column">
@@ -34,7 +34,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      count: 'domCount'
+      singleColumnCount: 'singleColumnCount'
     })
   },
   methods: {
@@ -66,9 +66,9 @@ export default {
 }
 
 .layoutSpan {
-  white-space:nowrap;
+  white-space: nowrap;
   display: inline-block;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>

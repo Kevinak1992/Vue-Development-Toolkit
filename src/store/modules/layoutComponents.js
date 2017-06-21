@@ -2,12 +2,16 @@ import * as types from '../mutation-types'
 
 // initial state
 const state = {
-  domCount: 1
+  singleColumnCount: 1,
+  doubleColumnCount: 1,
+  triplexColumnCount: 1
 }
 
 // getters
 const getters = {
-  domCount: state => state.domCount
+  singleColumnCount: state => state.singleColumnCount,
+  doubleColumnCount: state => state.doubleColumnCount,
+  triplexColumnCount: state => state.triplexColumnCount
 }
 
 // actions
@@ -20,7 +24,7 @@ const actions = {
 // mutations
 const mutations = {
   [types.GET_DOM_COUNT] (state) {
-    state.domCount++
+    state.singleColumnCount++
   }
 }
 
