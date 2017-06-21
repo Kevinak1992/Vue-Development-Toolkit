@@ -4,8 +4,8 @@
       布局
     </div>
     <ul>
-      <li draggable='true' @dragstart='drag($event)' class="layoutLi" id="single-column">
-        <span class="layoutSpan">单列布局 {{ count }}</span>
+      <li draggable='true' @dragstart='drag($event)' class="layoutLi" id="single-column"  v-for="n in count">
+        <span class="layoutSpan">单列布局 {{ count - 1 }}</span>
         <single-column></single-column>
       </li>
       <li draggable='true' @dragstart='drag($event)' class="layoutLi" id="double-column">
@@ -42,6 +42,7 @@ export default {
       let dragId = event.currentTarget.id
       this.$data.dragDom = event.currentTarget.getElementsByClassName(dragId)
       let dragDom = this.$data.dragDom[0]
+      this.$emit('domId', dragId)
       this.$emit('dom', dragDom)
     }
   }
@@ -65,7 +66,6 @@ export default {
 }
 
 .layoutSpan {
-  max-width: 60%;
   white-space:nowrap;
   display: inline-block;
   overflow:hidden;

@@ -1,5 +1,5 @@
 <template>
-  <div class="single-column">
+  <div class="single-column" hidden>
     <div class="row">
       <div class="col-md-12 bdt-droppable">
       </div>
@@ -25,8 +25,4 @@ export default {
 <style scoped>
 @import '../../css/vdt.css';
 @import '../../css/components.less';
-
-.single-column {
-
-}
 </style>

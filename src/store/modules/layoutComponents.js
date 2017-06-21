@@ -2,7 +2,7 @@ import * as types from '../mutation-types'
 
 // initial state
 const state = {
-  domCount: 0
+  domCount: 1
 }
 
 // getters

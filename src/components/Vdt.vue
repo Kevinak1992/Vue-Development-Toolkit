@@ -2,7 +2,7 @@
   <div class="workspace pin-sidebar pin-left pin-right">
     <div id="components" class="sidebar left">
       <div class="components-group">
-        <layout-components @dom='getDom'></layout-components>
+        <layout-components @dom='getDom' @domId='getDomId'></layout-components>
         <container-components></container-components>
         <generic-components></generic-components>
         <entity-components></entity-components>
@@ -24,7 +24,8 @@ export default {
   name: 'vdt',
   data () {
     return {
-      dropDom: ''
+      dropDom: '',
+      dropDomId: ''
     }
   },
   components: {
@@ -37,11 +38,18 @@ export default {
     getDom (data) {
       this.$data.dropDom = data
     },
+    getDomId (data) {
+      this.$data.dropDomId = data
+    },
     drop (event) {
       let dropDom = this.$data.dropDom
       event.preventDefault()
       event.currentTarget.appendChild(dropDom)
       this.$store.dispatch('addDomCount')
+      let dropDomId = this.$data.dropDomId
+      document.getElementById(dropDomId).remove()
+      let ui = document.getElementById('container').getElementsByClassName(dropDomId)
+      ui[ ui.length - 1 ].removeAttribute('hidden')
     },
     allowDrop (event) {
       event.preventDefault()
