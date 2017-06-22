@@ -16,15 +16,21 @@ const getters = {
 
 // actions
 const actions = {
-  addDomCount ({ commit }) {
-    commit(types.GET_DOM_COUNT)
+  addDomCount ({ commit }, dropDomId) {
+    commit(types.GET_DOM_COUNT, { dropDomId })
   }
 }
 
 // mutations
 const mutations = {
-  [types.GET_DOM_COUNT] (state) {
-    state.singleColumnCount++
+  [types.GET_DOM_COUNT] (state, { dropDomId }) {
+    if (dropDomId === 'single-column') {
+      state.singleColumnCount++
+    } else if (dropDomId === 'double-column') {
+      state.doubleColumnCount++
+    } else if (dropDomId === 'triplex-column') {
+      state.triplexColumnCount++
+    }
   }
 }
 

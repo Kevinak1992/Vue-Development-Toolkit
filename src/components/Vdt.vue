@@ -49,7 +49,7 @@ export default {
       document.getElementById(dropDomId).remove()
       let ui = document.getElementById('container').getElementsByClassName(dropDomId)
       ui[ ui.length - 1 ].removeAttribute('hidden')
-      this.$store.dispatch('addDomCount')
+      this.$store.dispatch('addDomCount', dropDomId)
     },
     allowDrop (event) {
       event.preventDefault()
@@ -59,8 +59,9 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 @import '../css/vdt.css';
+@import '../css/components.less';
 
 .components-group {
   margin-bottom: 12px;

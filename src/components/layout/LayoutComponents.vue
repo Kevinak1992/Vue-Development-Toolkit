@@ -6,13 +6,13 @@
     <ul>
       <li draggable='true' @dragstart='drag($event)' class="layoutLi" id="single-column"  v-for="n in singleColumnCount">
         <span class="layoutSpan">单列布局 {{ singleColumnCount - 1 }}</span>
-        <single-column></single-column>
+        <single-column :dropDom="dropDom"></single-column>
       </li>
       <li draggable='true' @dragstart='drag($event)' class="layoutLi" id="double-column">
-        <span class="layoutSpan">双列布局</span>
+        <span class="layoutSpan">双列布局 {{ doubleColumnCount - 1 }}</span>
       </li>
       <li draggable='true' @dragstart='drag($event)' class="layoutLi" id="triplex-column">
-        <span class="layoutSpan">三列布局</span>
+        <span class="layoutSpan">三列布局 {{ triplexColumnCount - 1 }}</span>
       </li>
     </ul>
   </div>
@@ -26,7 +26,10 @@ export default {
   name: 'layoutComponents',
   data () {
     return {
-      dragDom: ''
+      dropDom: [{
+        dragId: '',
+        dragDom: ''
+      }]
     }
   },
   components: {
@@ -34,14 +37,17 @@ export default {
   },
   computed: {
     ...mapGetters({
-      singleColumnCount: 'singleColumnCount'
+      singleColumnCount: 'singleColumnCount',
+      doubleColumnCount: 'doubleColumnCount',
+      triplexColumnCount: 'triplexColumnCount'
     })
   },
   methods: {
     drag (event) {
       let dragId = event.currentTarget.id
-      this.$data.dragDom = event.currentTarget.getElementsByClassName(dragId)
-      let dragDom = this.$data.dragDom[0]
+      let dragDom = event.currentTarget.getElementsByClassName(dragId)[0]
+      this.$data.dropDom[0].dragId = dragId
+      this.$data.dropDom[0].dragDom = dragDom
       this.$emit('domId', dragId)
       this.$emit('dom', dragDom)
     }
@@ -51,9 +57,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import '../../css/vdt.css';
-@import '../../css/components.less';
-
 .titleName {
   width: auto;
   margin: 10px 0;
